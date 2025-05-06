@@ -1,6 +1,6 @@
 package com.example.imagemanipulator.shared.model
 
-class ImageLayer(override val id: String, val image: Any) : Layer {
+class ImageLayer(val image: Any, override val id: String) : Layer {
     override fun draw() {
     }
 }

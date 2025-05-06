@@ -6,11 +6,12 @@ class LayerHistory {
     private val HISTORY_LIMIT = 20
 
     fun undo(): Canvas? {
-        if (current > 0) {
+        if (current <= 0) {
+ return history[current]
+        } else {
             current--
-            return history[current]
+ return history[current]
         }
-        return null
     }
 
     fun redo(): Canvas? {
@@ -22,7 +23,11 @@ class LayerHistory {
     }
 
     fun addState(canvas: Canvas) {
+ if (current < history.size -1){
+ history.subList(current +1,history.size).clear()
+ }
         if (history.size >= HISTORY_LIMIT) {
+ history.removeAt(0)
             history.removeAt(0)
             current--
         }
