@@ -39,14 +39,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(libs.compose.runtime)
+                implementation(libs.compose.foundation)
+                implementation(libs.compose.material)
                 @OptIn(ExperimentalComposeLibrary::class)
-                implementation(compose.components.resources)
-                // Temporarily commenting out these dependencies to reduce build complexity
-                implementation("com.soywiz.korlibs.korim:korim:2.2.0")
-                implementation("com.github.MarkYav:DrawBox:1.3.1")
+                implementation(libs.compose.components.resources)
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
                 implementation("io.insert-koin:koin-core:3.4.0")
             }
@@ -59,12 +56,13 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.12.0")
-                implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-                implementation("androidx.activity:activity-compose:1.8.2")
-                implementation(compose.ui)
-                implementation(compose.material)
-                implementation("androidx.compose.ui:ui-graphics:1.5.3")
-                implementation("androidx.compose.ui:ui-tooling-preview:1.5.3")
+                implementation(libs.androidx.lifecycle.runtime.ktx)
+                implementation(libs.androidx.activity.compose)
+                implementation(libs.compose.ui)
+                implementation(libs.compose.material)
+                implementation(libs.androidx.compose.ui.graphics)
+                implementation(libs.androidx.compose.ui.tooling.preview)
+                implementation("io.ak1:drawbox:1.0.3")
             }
         }
         val androidUnitTest by getting {
@@ -83,9 +81,9 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             
             dependencies {
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(libs.compose.ui)
+                implementation(libs.compose.foundation)
+                implementation(libs.compose.material)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
             }
