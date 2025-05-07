@@ -1,7 +1,7 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
-    kotlin("multiplatform") version "1.9.10"
+    kotlin("multiplatform") version "1.9.20" // Updated to match Compose compiler requirement
     id("com.android.application") version "8.1.4"
     id("org.jetbrains.compose") version "1.5.3"
     id("maven-publish")
@@ -11,6 +11,7 @@ repositories {
     google()
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    maven("https://maven.korge.org/")  // Add KorGE repository
     maven { url = uri("https://jitpack.io") }
 }
 
@@ -38,6 +39,8 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            kotlin.srcDirs("src/commonMain/kotlin")
+            
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -46,6 +49,7 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
                 implementation("io.insert-koin:koin-core:3.4.0")
+                // We'll handle image loading with platform-specific code instead
             }
         }
         val commonTest by getting {
@@ -103,8 +107,16 @@ kotlin {
 android {
     namespace = "com.example.imagemanipulator.android"
     compileSdk = 34
-
-    sourceSets["main"].manifest.srcFile("com.example.imagemanipulator.android/AndroidManifest.xml")
+    
+    sourceSets {
+        named("main") {
+            manifest.srcFile("src/main/AndroidManifest.xml")
+            java.srcDirs("src/main/kotlin")
+            kotlin.srcDirs("src/main/kotlin")
+            res.srcDirs("src/main/res")
+            resources.srcDirs("src/main/resources")
+        }
+    }
 
     defaultConfig {
         applicationId = "com.example.imagemanipulator.android"

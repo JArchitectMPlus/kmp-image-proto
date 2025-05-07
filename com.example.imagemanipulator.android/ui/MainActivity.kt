@@ -4,70 +4,38 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.Composable
-import com.example.imagemanipulator.shared.model.Canvas
-import com.example.imagemanipulator.shared.model.ImageLayer
-import com.example.imagemanipulator.shared.model.TextLayer
-import com.example.imagemanipulator.shared.ui.canvas.CanvasView
-import com.example.imagemanipulator.shared.ui.canvas.LayerOptionsView
-import com.example.imagemanipulator.shared.ui.export.ExportView
-import com.example.imagemanipulator.shared.ui.layers.LayerControlsView
-import com.example.imagemanipulator.shared.ui.layers.LayerListView
-import com.example.imagemanipulator.shared.CanvasViewModel
-import com.example.imagemanipulator.shared.LayerViewModel
-import com.example.imagemanipulator.shared.util.KorIMWrapper
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
         setContent {
             MaterialTheme {
                 Surface {
-                    App()
+                    SimpleApp()
                 }
             }
         }
     }
 
     @Composable
-    fun App() {
-        val context = LocalContext.current
-        val korimWrapper = KorIMWrapper(context)
-        val layers = mutableListOf<com.example.imagemanipulator.shared.model.Layer>()
-        val canvas = Canvas(800, 600, "4:3", layers)
-        val canvasViewModel = CanvasViewModel(canvas)
-        val layerViewModel = LayerViewModel(layers)
-
-        val pickImage = rememberLauncherForActivityResult(
-            ActivityResultContracts.GetContent()
-        ) { uri: Uri? ->
-            uri?.let {
-                addImageFromUri(it)
-            }
-        }
-
+    fun SimpleApp() {
         Column {
-            CanvasView(canvasViewModel)
-            LayerListView(layerViewModel) {
-                pickImage.launch("image/*")
+            androidx.compose.material.Text("DecoPac POC")
+            androidx.compose.material.Button(onClick = {
+                // Button click handler
+            }) {
+                androidx.compose.material.Text("Load Image")
             }
-            LayerControlsView(layerViewModel)
-            LayerOptionsView(layerViewModel)
-            ExportView(canvasViewModel)
         }
-    }
-
-    private fun addImageFromUri(uri: Uri) {
-        // Implementation for loading and adding image from Uri
-        // This will likely involve using the KorIMWrapper and updating the canvasViewModel and layerViewModel
-    }
-
-    private fun setSelectedImageLayer(imageLayer: ImageLayer?) {
-        // Implementation for setting the selected image layer
     }
 }
