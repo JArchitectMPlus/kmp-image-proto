@@ -39,11 +39,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.compose.runtime)
-                implementation(libs.compose.foundation)
-                implementation(libs.compose.material)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
                 @OptIn(ExperimentalComposeLibrary::class)
-                implementation(libs.compose.components.resources)
+                implementation(compose.components.resources)
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
                 implementation("io.insert-koin:koin-core:3.4.0")
             }
@@ -56,12 +56,10 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.12.0")
-                implementation(libs.androidx.lifecycle.runtime.ktx)
                 implementation(libs.androidx.activity.compose)
-                implementation(libs.compose.ui)
-                implementation(libs.compose.material)
-                implementation(libs.androidx.compose.ui.graphics)
-                implementation(libs.androidx.compose.ui.tooling.preview)
+                implementation(compose.ui)
+                implementation(compose.material)
+                implementation(compose.uiTooling)
                 implementation("io.ak1:drawbox:1.0.3")
             }
         }
@@ -81,9 +79,9 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             
             dependencies {
-                implementation(libs.compose.ui)
-                implementation(libs.compose.foundation)
-                implementation(libs.compose.material)
+                implementation(compose.ui)
+                implementation(compose.foundation)
+                implementation(compose.material)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
             }
