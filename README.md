@@ -30,30 +30,56 @@
  - Implement 360-degree rotation functionality
 
  - **Text Layers**:
- - Enable adding text with customizable properties
- - Include placeholder for 14 colors and 6 fonts (to be implemented later)
+ - Enable adding text
  - Support scaling from 10% to 190%
  - Allow positioning anywhere within canvas boundaries
  - Enable 360-degree rotation
  - Implement text curving functionality (straight line to semi-circle)
-
- ## Layer Management System
- - Create layer management controls that allow:
- - Removing individual layers
- - Reordering layers (moving forward/backward in z-index)
- - Implementing undo/redo functionality with layer history tracking
 
  ## Export Functionality
  - On completion, allow saving the entire canvas as a flattened PNG
  - Maintain transparency with white background
  - Include functionality to export the image as base64
 
- ## Technical Implementation Notes
- - Use Kotlin Multiplatform to share image manipulation logic between iOS and Android
- - Create native UI implementations for each platform that interact with the shared module
- - Ensure performant rendering even with multiple layers and transformations
- - Implement a responsive design that works across various device dimensions
 
-Get started by customizing your environment (defined in the .idx/dev.nix file) with the tools and IDE extensions you'll need for your project!
+# Running the Project
 
-Learn more at https://firebase.google.com/docs/studio/customize-workspace
+## Running on iOS
+
+To install and run the application on an iOS device or simulator:
+
+1.  Ensure you have Xcode installed on a macOS machine.
+2.  Connect your iOS device or have the iOS Simulator running.
+3.  Execute the appropriate Gradle iOS run task from your project's root directory:
+
+    *   For an iPhone device:
+    *   ```bash
+        ./gradlew iosDeployiPhone
+        ```
+    *   For an iPhone simulator:
+    *  ```bash
+        ./gradlew iosDeployiPhoneSimulator
+        ```
+       
+4.  The application should launch on the connected device or simulator.
+
+## Running on Android
+
+To install and run the application on an Android device or emulator:
+
+1.  Ensure you have Android Studio installed and set up.
+2.  Connect your Android device or have the Android Emulator running.
+3.  Execute the appropriate Gradle Android run task from your project's root directory:
+
+    *   For an Android device:
+    *   ```bash
+        ./gradlew androidDeploy
+        ```
+    *   For an Android emulator:
+    *   ```bash
+        ./gradlew androidDeployEmulator
+        ```
+        
+4.  The application should launch on the connected device or emulator.
+
+
