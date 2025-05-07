@@ -1,6 +1,6 @@
-package com.example.imagemanipulator.android.viewmodel
+package com.example.imagemanipulator.shared
 
-import androidx.lifecycle.ViewModel
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.example.imagemanipulator.shared.model.Layer
 
 class LayerViewModel(layers: MutableList<Layer>) : ViewModel() {

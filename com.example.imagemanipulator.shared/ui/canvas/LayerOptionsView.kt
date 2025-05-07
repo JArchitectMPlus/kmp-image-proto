@@ -1,8 +1,8 @@
-package com.example.imagemanipulator.android.ui.canvas
+package com.example.imagemanipulator.shared.ui.canvas
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.imagemanipulator.android.viewmodel.LayerViewModel
+import com.example.imagemanipulator.shared.LayerViewModel
 
 @Composable
 fun LayerOptionsView(layerViewModel: LayerViewModel) {

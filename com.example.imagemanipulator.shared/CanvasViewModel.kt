@@ -1,11 +1,11 @@
-package com.example.imagemanipulator.android.viewmodel
+package com.example.imagemanipulator.shared
 
-import androidx.lifecycle.ViewModel
+import androidx.compose.ui.graphics.ImageBitmap
 import com.example.imagemanipulator.shared.model.Layer
 import com.example.imagemanipulator.shared.model.Canvas
 import com.example.imagemanipulator.shared.transformation.TransformationManager
 
-class CanvasViewModel(val canvas: Canvas) : ViewModel()
+class CanvasViewModel(val canvas: Canvas)
  {
     fun addLayer(layer: Layer) {
         canvas.addLayer(layer)
