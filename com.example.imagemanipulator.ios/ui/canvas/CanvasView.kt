@@ -11,6 +11,7 @@ import com.example.imagemanipulator.shared.model.ImageLayer
 import com.example.imagemanipulator.shared.model.Layer
 import com.example.imagemanipulator.shared.model.TextLayer
 import platform.CoreGraphics.CGContextRef
+import platform.CoreGraphics.CGPointMake
 import platform.CoreGraphics.CGRect
 import platform.CoreGraphics.CGRectMake
 import platform.CoreGraphics.CGSize
@@ -18,6 +19,8 @@ import platform.CoreGraphics.CGContextSetFillColorWithColor
 import platform.CoreGraphics.CGContextFillRect
 import platform.UIKit.UIColor
 import platform.UIKit.UIView
+import platform.UIKit.UIImage
+import platform.UIKit.UIImageView
 import platform.UIKit.addSubview
 import platform.UIKit.setNeedsDisplay
 import kotlin.math.max
@@ -37,7 +40,9 @@ class CanvasView(
     override fun drawRect(rect: CGRect) {
         super.drawRect(rect)
         val iosPlatformCanvas = IOSPlatformCanvas()
+        val imageLayer = ImageLayer(position = Offset(100f, 100f), size = IntSize(200, 200))
         platformDrawBox.drawOnCanvas(iosPlatformCanvas) { platformCanvas ->
+            drawLayer(it, it.getContext()!!, imageLayer)
             drawLayers(it)
         }
     }
@@ -57,7 +62,7 @@ class CanvasView(
     private fun drawLayer(canvas: IOSPlatformCanvas, ctx: CGContextRef, layer: Layer) {
         when (layer) {
             is ImageLayer -> {
-
+                canvas.drawLayer(layer, layer.position, layer.size)
             }
             is TextLayer -> {
                 drawTextLayer(canvas, ctx, layer)

@@ -1,6 +1,7 @@
 package com.example.imagemanipulator.android.ui.canvas
 
 import android.graphics.Canvas
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
@@ -12,9 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
+import com.example.imagemanipulator.android.R
 import com.example.imagemanipulator.android.drawing.AndroidPlatformCanvas
+import com.example.imagemanipulator.android.drawing.AndroidPlatformDrawBox
 import com.example.imagemanipulator.android.drawing.AndroidPlatformDrawBox
 import com.example.imagemanipulator.shared.CanvasViewModel
 import com.example.imagemanipulator.shared.model.Layer
@@ -25,6 +29,7 @@ fun CanvasView(canvasViewModel: CanvasViewModel) {
     val layers by canvasViewModel.layers.collectAsState()
     val transformationManager by canvasViewModel.transformationManager.collectAsState()
     val canvas by canvasViewModel.canvas.collectAsState()
+ val context = LocalContext.current
 
     Canvas(
         modifier = Modifier
@@ -57,10 +62,16 @@ fun CanvasView(canvasViewModel: CanvasViewModel) {
             val nativeCanvas: Canvas = canvasCompose.nativeCanvas
             val platformCanvas = AndroidPlatformCanvas()
             platformCanvas.setCanvas(nativeCanvas)
+ val testImage = BitmapFactory.decodeResource(context.resources, R.drawable.testImage)
 
             AndroidPlatformDrawBox().drawOnCanvas {
-                 for (layer in layers) {
-                     drawLayer(it, layer)
+                val testImageLayer = Layer.Image(
+                    id = "test",
+                    image = testImage,
+                    transformation = transformationManager.currentTransformation
+                )
+ for (layer in layers) {
+ drawLayer(it, layer)
                  }
             }
         }
