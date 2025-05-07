@@ -1,0 +1,74 @@
+gitignore
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration files (IntelliJ/Android Studio)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Kotlin Multiplatform
+.kotlin/
+# Kotlin cache files
+.kotlin_language_settings
+.kotlin_build/
+
+# Build artifacts
+**/build/
+
+# Android specific
+app/build/
+.cxx/
+local.properties
+*.apk
+*.aab
+*.aar
+*.iml
+
+# iOS specific (Xcode)
+# Build products
+build/
+DerivedData/
+
+# Swift Package Manager
+.swiftpm/
+
+# Xcode related
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Cocoapods
+Pods/
+.bundle/
+
+# Gradle generated files in iOS directory
+# If Gradle places build artifacts directly in the iOS directory
+# you might need to add patterns like:
+# iosApp/build/
+
+# macOS specific files
+.DS_Store
+
+# Crashlytics/Firebase files
+crashlytics/
+firebase/
+
+# Any files you explicitly want to ignore
+# For example, if you have a 'secrets.properties' file
+# secrets.properties
+
+# Additional files based on your project structure
+# If you have a 'web' module or specific build output directories
+# that aren't covered by the general patterns, add them here.
+# web/build/
+# dist/ # If you have a 'dist' folder for web builds
+
+# Generated files from specific libraries or tools
+# If you use code generation libraries, check their documentation
+# for recommended .gitignore patterns.
