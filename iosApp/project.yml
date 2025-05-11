@@ -1,0 +1,33 @@
+name: ImageManipulator
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: 14.0
+  createIntermediateGroups: true
+targets:
+  ImageManipulator:
+    type: application
+    platform: iOS
+    deploymentTarget: 14.0
+    sources:
+      - ImageManipulatorSwiftApp
+      - Info.plist
+      - LaunchScreen.storyboard
+    info:
+      path: ./Info.plist
+      properties:
+        CFBundleIdentifier: "com.example.ImageManipulator"
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        UILaunchStoryboardName: LaunchScreen
+        NSPhotoLibraryUsageDescription: "This app needs access to your photo library to let you select images to manipulate."
+    settings:
+      base:
+        FRAMEWORK_SEARCH_PATHS: "$(SRCROOT)/../build/cocoapods/framework"
+        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: YES
+        DEVELOPMENT_TEAM: "" # Set your development team ID here if you have one
+        EXCLUDED_ARCHS[sdk=iphonesimulator*]: ""
+        VALID_ARCHS: "arm64 x86_64"
+    dependencies:
+      - framework: ../build/cocoapods/framework/shared.framework
+        embed: true

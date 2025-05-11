@@ -1,0 +1,8 @@
+platform :ios, '14.0'
+
+target 'ImageManipulator' do
+  use_frameworks!
+  
+  # Local framework path
+  pod 'shared', :path => '../'
+end

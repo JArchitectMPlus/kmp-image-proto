@@ -1,11 +1,10 @@
-package com.example.imagemanipulator.android.ui.layers
+package com.example.imagemanipulator.shared.ui.layers
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.imagemanipulator.android.viewmodel.LayerViewModel
 import com.example.imagemanipulator.shared.LayerViewModel
 
+/**
+ * Layer controls view that will be implemented per platform
+ */
 @Composable
-fun LayerControlsView(layerViewModel: LayerViewModel) {
-    Text(text = "Layer Controls")
-}
+expect fun LayerControlsView(layerViewModel: LayerViewModel)

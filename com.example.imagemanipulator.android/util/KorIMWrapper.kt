@@ -10,11 +10,12 @@ import java.io.FileOutputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-actual class KorIMWrapper actual constructor(private val context: Any) {
-    
-    actual suspend fun load(path: String): Any? = withContext(Dispatchers.IO) {
+// Android implementation of KorIMWrapper
+class KorIMWrapper(private val context: Any) {
+
+    suspend fun load(path: String): Any? = withContext(Dispatchers.IO) {
         if (context !is Context) return@withContext null
-        
+
         try {
             val uri = Uri.parse(path)
             val inputStream = context.contentResolver.openInputStream(uri)
@@ -27,13 +28,17 @@ actual class KorIMWrapper actual constructor(private val context: Any) {
         }
     }
 
-    actual suspend fun save(image: Any?, path: String): Boolean = withContext(Dispatchers.IO) {
+    suspend fun save(image: Any?, path: String): Boolean = withContext(Dispatchers.IO) {
         if (image !is Bitmap) return@withContext false
-        
+
         try {
             val file = File(path)
+
+            // Create parent directories if they don't exist
+            file.parentFile?.mkdirs()
+
             val outputStream = FileOutputStream(file)
-            
+
             // Save as PNG
             image.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
             outputStream.close()

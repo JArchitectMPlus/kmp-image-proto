@@ -7,6 +7,9 @@ plugins {
     id("maven-publish")
 }
 
+// Apply iOS deployment tasks
+apply(from = "ios-deploy.gradle")
+
 repositories {
     google()
     mavenCentral()
@@ -39,8 +42,8 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            kotlin.srcDirs("src/commonMain/kotlin")
-            
+            kotlin.srcDirs("com.example.imagemanipulator.shared")
+
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -63,6 +66,8 @@ kotlin {
                 implementation(libs.androidx.activity.compose)
                 implementation(compose.ui)
                 implementation(compose.material)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 implementation(compose.uiTooling)
                 implementation("io.ak1:drawbox:1.0.3")
             }
@@ -81,7 +86,8 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-            
+            kotlin.srcDirs("com.example.imagemanipulator.ios")
+
             dependencies {
                 implementation(compose.ui)
                 implementation(compose.foundation)
@@ -110,9 +116,9 @@ android {
     
     sourceSets {
         named("main") {
-            manifest.srcFile("src/main/AndroidManifest.xml")
-            java.srcDirs("src/main/kotlin")
-            kotlin.srcDirs("src/main/kotlin")
+            manifest.srcFile("com.example.imagemanipulator.android/AndroidManifest.xml")
+            java.srcDirs("com.example.imagemanipulator.android")
+            kotlin.srcDirs("com.example.imagemanipulator.android")
             res.srcDirs("src/main/res")
             resources.srcDirs("src/main/resources")
         }

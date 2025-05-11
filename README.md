@@ -1,85 +1,183 @@
- # Project Overview
- This project aims to develop a mobile image manipulation application using Kotlin Multiplatform, targeting both iOS and Android platforms. The core functionality involves a canvas where users can add, manipulate, and manage image and text layers. The shared logic for image manipulation is implemented in Kotlin Multiplatform, ensuring consistency and code reusability across platforms.
+ # KMP Image Manipulator App
 
- ## Key Features
+This project is a mobile image manipulation application using Kotlin Multiplatform (KMP), targeting both iOS and Android platforms. The core functionality involves manipulating images with transformations such as scaling, rotation, and positioning. The shared logic for image transformation is implemented in Kotlin Multiplatform, ensuring consistency and code reusability across platforms.
 
- -   Configurable canvas supporting 3:2 aspect ratio and 1:1 circular formats.
- -   Layer system for adding, managing, and manipulating multiple image and text layers.
- -   Image layers with scaling (10% to 190%), positioning, and 360-degree rotation.
- -   Text layers with scaling (10% to 190%), positioning, rotation, and text curving.
- -   Layer management controls for removing, reordering, and undo/redo.
- -   Export functionality to save the canvas as a flattened PNG with transparency and white background, and also as base64.
+## Architecture
 
- ## Technical Implementation
+The app follows the KMP best practices with a modular architecture:
 
- -   Kotlin Multiplatform for shared image manipulation logic.
- -   Native UI implementations for iOS and Android.
- -   Performant rendering with responsive design across various device dimensions.
+- **Shared Logic:** Image transformation logic (scaling, rotation, etc.) is implemented in Kotlin and shared between platforms
+- **Platform-Specific UI:** Each platform uses its native UI toolkit:
+  - Android uses native Android Views/Compose
+  - iOS uses native SwiftUI views with Kotlin interoperability
+- **MVVM Pattern:** The application follows the Model-View-ViewModel pattern:
+  - **Model:** Shared data classes (Canvas, Layer, etc.)
+  - **ViewModel:** Shared Kotlin ViewModels (CanvasViewModel, LayerViewModel)
+  - **View:** Platform-specific UI implementations
 
- ## Canvas Requirements
+### Layer-Based Design
 
- - Configurable canvas that supports both 3:2 aspect ratio and 1:1 circular formats
- - Implement a layer system that allows users to add, manage, and manipulate multiple image and text layers
- - Canvas should maintain transparency and export as a PNG with white background
+The image editor uses a layered canvas approach:
+- Multiple layers can be added to a canvas (images, text)
+- Each layer can be independently manipulated (scaled, rotated, positioned)
+- Layer controls allow selecting, editing, and reordering layers
 
- ## Layer Manipulation Features
- - **Image Layers**:
- - Support adding PNG and JPG images as layers
- - Allow scaling from 10% to 190% of original size
- - Enable positioning anywhere within the canvas boundaries
- - Implement 360-degree rotation functionality
+## Key Features
 
- - **Text Layers**:
- - Enable adding text
- - Support scaling from 10% to 190%
- - Allow positioning anywhere within canvas boundaries
- - Enable 360-degree rotation
- - Implement text curving functionality (straight line to semi-circle)
+- Image manipulation with scaling (10% to 190%), positioning, and 360-degree rotation
+- Shared transformation logic across platforms
+- Native UI for each platform
+- Export functionality to save the image as base64
 
- ## Export Functionality
- - On completion, allow saving the entire canvas as a flattened PNG
- - Maintain transparency with white background
- - Include functionality to export the image as base64
+## Project Structure
 
+### Shared Kotlin Module
+- `com.example.imagemanipulator.shared/` - Shared Kotlin code across platforms:
+  - `transformation/` - Core transformation logic for all layers:
+    - `PositionTransformation.kt` - X/Y positioning logic
+    - `RotationTransformation.kt` - 360-degree rotation logic
+    - `ScaleTransformation.kt` - Scaling from 10% to 190%
+    - `TransformationManager.kt` - Coordinates transformations
+  - `model/` - Data models:
+    - `Canvas.kt` - Container for all layers
+    - `Layer.kt` - Base layer interface
+    - `ImageLayer.kt` - Image-specific layer implementation
+    - `TextLayer.kt` - Text-specific layer implementation
+  - `ui/` - Platform-independent UI interfaces and components:
+    - `canvas/` - Canvas view interfaces
+    - `layers/` - Layer control components
+    - `export/` - Canvas export functionality
+  - `CanvasViewModel.kt` - Business logic for canvas manipulation
+  - `LayerViewModel.kt` - Business logic for layer manipulation
 
-# Running the Project
+### Android Platform Module
+- `com.example.imagemanipulator.android/` - Android-specific implementation:
+  - `drawing/` - Android Canvas drawing logic:
+    - `AndroidPlatformCanvas.kt` - Android implementation of platform canvas
+  - `ui/` - Android UI components:
+    - `canvas/` - Canvas view implementation for Android
+    - `layers/` - Layer control UI for Android
+  - `export/` - Android-specific export functionality
+  - `provider/` - Image provider implementation for Android
+  - `util/` - Android utilities and helpers
 
-## Running on iOS
+### iOS Kotlin Module
+- `com.example.imagemanipulator.ios/` - iOS-specific Kotlin code:
+  - `drawing/` - iOS drawing logic in Kotlin:
+    - `IOSPlatformCanvas.kt` - iOS implementation of platform canvas
+    - `IOSPlatformDrawBox.kt` - Drawing functionality for iOS
+  - `ui/` - Kotlin interfaces for iOS UI components:
+    - `canvas/` - Canvas view implementation for iOS
+    - `layers/` - Layer control UI interfaces for iOS
+  - `util/` - iOS-specific utilities:
+    - `CoreGraphicsExtensions.kt` - Extensions for iOS CoreGraphics
+    - `KorIMWrapper.kt` - Image handling utilities for iOS
 
-To install and run the application on an iOS device or simulator:
+### iOS Swift Module
+- `iosApp/` - Native iOS Swift implementation:
+  - `ImageManipulator/` - Swift wrappers and native components:
+    - `CanvasViewModelWrapper.swift` - Swift wrapper for Kotlin CanvasViewModel
+    - `LayerViewModelWrapper.swift` - Swift wrapper for Kotlin LayerViewModel
+    - `ImageViewModelWrapper.swift` - Swift wrapper for Kotlin ImageViewModel
+    - `IOSImageProvider.swift` - Native image provider implementation
+    - `ImagePicker.swift` - Native iOS image picker
+    - `UI/` - Native SwiftUI components:
+      - `CanvasView.swift` - SwiftUI canvas implementation
+      - `LayerControlsView.swift` - Layer manipulation controls
+      - `SwiftCanvasExporter.swift` - Canvas export functionality
+  - `SwiftUI/` - Native SwiftUI application components
 
-1.  Ensure you have Xcode installed on a macOS machine.
-2.  Connect your iOS device or have the iOS Simulator running.
-3.  Execute the appropriate Gradle iOS run task from your project's root directory:
+### Build & Run Scripts
+- `build-and-run.sh` - Unified script to build and run on either platform
+- `build-and-run-ios.sh` - Script to build and run the iOS app
+- `build-ios-app.sh` - Script to build the iOS app
+- `run-ios-simulator.sh` - Script to run the app on an iOS simulator
 
-    *   For an iPhone device:
-    *   ```bash
-        ./gradlew iosDeployiPhone
-        ```
-    *   For an iPhone simulator:
-    *  ```bash
-        ./gradlew iosDeployiPhoneSimulator
-        ```
-       
-4.  The application should launch on the connected device or simulator.
+## Running the Project
 
-## Running on Android
+You can use the unified build script to run either platform:
+
+```bash
+# Build and run on iOS simulator
+./build-and-run.sh --platform ios --simulator
+
+# Build and open iOS project in Xcode
+./build-and-run.sh --platform ios
+
+# Build and run on Android
+./build-and-run.sh --platform android
+```
+
+### Running on iOS
+
+To build and run the application on iOS:
+
+1. Build the iOS framework and open in Xcode:
+   ```bash
+   cd iosApp
+   ./build_and_run.sh
+   ```
+
+   This script:
+   - Builds the shared KMP framework for iOS (arm64 and x86_64)
+   - Creates a universal binary using lipo
+   - Copies the framework to the proper location
+   - Generates the Xcode project using xcodegen
+   - Builds the app for the simulator
+   - Opens the project in Xcode
+
+2. In Xcode:
+   - Select the iPhone 16 Pro (or other) simulator from the device dropdown
+   - Press the Run button (▶️) or use Cmd+R to run the app on the simulator
+
+Alternatively, you can run individual scripts for specific steps:
+```bash
+# Just build the iOS framework
+./build-ios-app.sh
+
+# Run on a specific iOS simulator
+./run-ios-simulator.sh "iPhone 16 Pro"
+```
+
+### Running on Android
 
 To install and run the application on an Android device or emulator:
 
-1.  Ensure you have Android Studio installed and set up.
-2.  Connect your Android device or have the Android Emulator running.
-3.  Execute the appropriate Gradle Android run task from your project's root directory:
+1. Ensure you have an Android device connected or emulator running
+2. Run the application using:
+   ```bash
+   ./build-and-run.sh --platform android
+   ```
+3. The application should launch on the connected device or emulator.
 
-    *   For an Android device:
-    *   ```bash
-        ./gradlew androidDeploy
-        ```
-    *   For an Android emulator:
-    *   ```bash
-        ./gradlew androidDeployEmulator
-        ```
-        
-4.  The application should launch on the connected device or emulator.
+## Implementation Details
 
+### Kotlin Multiplatform Architecture
+The app demonstrates a production-ready KMP architecture with platform-specific UIs while sharing business logic:
+
+1. **Shared Logic (expect/actual pattern):**
+   - Core transformation logic is implemented once in Kotlin and shared
+   - Platform-specific implementations use the `expect/actual` pattern
+   - ViewModels are shared across platforms, ensuring consistent behavior
+
+2. **Platform-Specific UI Integration:**
+   - **Android:** Uses native Android Views and Kotlin interop
+   - **iOS:** Uses SwiftUI with Swift wrappers for Kotlin components
+
+3. **Swift-Kotlin Interoperability:**
+   - Swift wrapper classes bridge to Kotlin ViewModels
+   - Extensions help with Swift/Kotlin interoperability for CoreGraphics types
+   - Platform-specific image loading/saving
+
+### Layer System
+- Image and text layers are treated as distinct types inheriting from a common Layer interface
+- Each layer maintains its own transformation state (position, rotation, scale)
+- Touch gestures are translated to transformation operations
+
+### Canvas Drawing
+- Each platform has a specific canvas implementation:
+   - Android: Uses Android Canvas API
+   - iOS: Uses CoreGraphics and UIKit
+
+This architecture ensures the best of both worlds - shared business logic with platform-specific UI implementations that follow each platform's design guidelines and performance characteristics.
 

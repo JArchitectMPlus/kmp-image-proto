@@ -1,22 +1,11 @@
-package com.example.imagemanipulator.android.ui.layers
+package com.example.imagemanipulator.shared.ui.layers
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import com.example.imagemanipulator.shared.model.TextLayer
-import com.example.imagemanipulator.shared.LayerViewModel
-
-@Composable
-fun LayerListView(viewModel: LayerViewModel, onSelectImageClick: () -> Unit) {
-    Text(text = "Layer List")
-    Button(onClick = {
-        onSelectImageClick()
-    }) {
-        Text("Select Image")
-    }
-    Button(onClick = {
-        viewModel.addLayer(TextLayer(id = "newTextLayer", text = "New Text", color = "#000000", font = "Arial", curve = 0f))
-    }) {
-        Text("Add Text Layer")
-    }
+/**
+ * Base interface for layer list view
+ * Each platform will provide its own implementation
+ */
+interface LayerListView {
+    fun show()
+    fun hide()
+    fun refresh()
 }

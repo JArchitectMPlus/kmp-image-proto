@@ -1,0 +1,92 @@
+// Simplified iOS deployment tasks in Groovy DSL
+
+// Add task to deploy to iOS simulator
+task iosDeployIphoneSimulator {
+    dependsOn 'linkDebugFrameworkIosSimulatorArm64'
+    doLast {
+        // Copy the framework to the expected location
+        def frameworkSource = new File(project.buildDir, "bin/iosSimulatorArm64/debugFramework/shared.framework")
+        def frameworkDest = new File(project.buildDir, "cocoapods/framework/shared.framework")
+        
+        // Create the destination directory if it doesn't exist
+        frameworkDest.parentFile.mkdirs()
+        
+        // Copy the framework
+        copy {
+            from frameworkSource
+            into frameworkDest.parentFile
+        }
+        
+        println "✅ Framework built and copied to ${frameworkDest}"
+        println ""
+        println "To run the iOS app:"
+        println "1. Open the iosApp directory in Xcode"
+        println "2. Make sure the shared.framework is properly linked"
+        println "3. Select a simulator from the device dropdown"
+        println "4. Click the Run button"
+        println ""
+        println "Or you can run these commands manually:"
+        println "cd iosApp"
+        println "xcodegen generate     # If you have XcodeGen installed"
+        println "open ImageManipulator.xcodeproj  # Opens the project in Xcode"
+    }
+}
+
+// Simplified task for installing and running on a real iPhone
+task iosDeployIphone {
+    dependsOn 'linkDebugFrameworkIosArm64'
+    doLast {
+        // Copy the framework to the expected location
+        def frameworkSource = new File(project.buildDir, "bin/iosArm64/debugFramework/shared.framework")
+        def frameworkDest = new File(project.buildDir, "cocoapods/framework/shared.framework")
+        
+        // Create the destination directory if it doesn't exist
+        frameworkDest.parentFile.mkdirs()
+        
+        // Copy the framework
+        copy {
+            from frameworkSource
+            into frameworkDest.parentFile
+        }
+        
+        println "✅ Framework built and copied to ${frameworkDest}"
+        println ""
+        println "To deploy to a physical iPhone:"
+        println "1. Open the iosApp directory in Xcode"
+        println "2. Make sure the shared.framework is properly linked"
+        println "3. Connect your iPhone"
+        println "4. Select your device in the device dropdown"
+        println "5. Click the Run button"
+        println ""
+        println "Note: You need to have a valid Apple Developer account and proper signing configuration"
+    }
+}
+
+// Create a convenient build-ios task that builds both simulator and device frameworks
+task buildIos {
+    dependsOn 'linkDebugFrameworkIosSimulatorArm64', 'linkDebugFrameworkIosArm64'
+    doLast {
+        def simulatorFramework = new File(project.buildDir, "bin/iosSimulatorArm64/debugFramework/shared.framework")
+        def deviceFramework = new File(project.buildDir, "bin/iosArm64/debugFramework/shared.framework")
+        def destDir = new File(project.buildDir, "cocoapods/framework")
+        
+        // Create the destination directory
+        destDir.mkdirs()
+        
+        // Copy the simulator framework
+        copy {
+            from simulatorFramework
+            into destDir
+        }
+        
+        println "✅ iOS frameworks built successfully!"
+        println ""
+        println "Simulator framework: ${simulatorFramework}"
+        println "Device framework: ${deviceFramework}"
+        println "Copied to: ${destDir}/shared.framework"
+        println ""
+        println "To open the iOS project in Xcode:"
+        println "cd iosApp"
+        println "open ."
+    }
+}

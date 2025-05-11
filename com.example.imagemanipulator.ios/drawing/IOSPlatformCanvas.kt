@@ -1,79 +1,121 @@
 package com.example.imagemanipulator.ios.drawing
 
-import com.example.imagemanipulator.shared.model.Layer
-import com.example.imagemanipulator.shared.model.ImageLayer
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.unit.IntSize
 import com.example.imagemanipulator.shared.drawing.PlatformCanvas
-import platform.CoreGraphics.CGPoint
-import platform.CoreGraphics.CGRect
-import platform.CoreGraphics.CGContextFillRect
+import com.example.imagemanipulator.shared.model.ImageLayer
+import com.example.imagemanipulator.shared.model.Layer
+import com.example.imagemanipulator.shared.model.TextLayer
+import kotlinx.cinterop.ExperimentalForeignApi
 import platform.CoreGraphics.CGContextRef
-import platform.CoreGraphics.CGContextRef
-import platform.UIKit.UIImage
+import platform.CoreGraphics.CGContextSaveGState
+import platform.CoreGraphics.CGContextRestoreGState
 import platform.CoreGraphics.CGContextTranslateCTM
-actual class IOSPlatformCanvas : PlatformCanvas() {
-    var context: CGContextRef? = null
-        private set
+import platform.CoreGraphics.CGContextRotateCTM
+import platform.CoreGraphics.CGContextScaleCTM
+import platform.CoreGraphics.CGRectMake
+import platform.UIKit.UIImage
+import platform.UIKit.UIView
+import kotlin.math.PI
 
+/**
+ * iOS implementation of the PlatformCanvas
+ */
+@ExperimentalForeignApi
+class IOSPlatformCanvas : PlatformCanvas {
+    private var context: CGContextRef? = null
+
+    /**
+     * Set the context to draw on
+     */
+    @ExperimentalForeignApi
     fun setContext(context: CGContextRef) {
         this.context = context
     }
 
+    @ExperimentalForeignApi
     fun getContext(): CGContextRef? {
         return context
     }
 
-    fun drawRect(x: Double, y: Double, width: Double, height: Double) {
-        context?.let {
-            CGContextFillRect(it, CGRect(x, y, width, height))
-        }
+    /**
+     * Overloaded method to draw a layer with position and size
+     */
+    @ExperimentalForeignApi
+    fun drawLayer(layer: Layer, position: Offset, size: IntSize) {
+        drawLayer(layer, position.x, position.y, size.width.toFloat(), size.height.toFloat())
     }
 
-    fun drawLine(x1: Double, y1: Double, x2: Double, y2: Double) {
-        // TODO: Implement line drawing using CGContext
-    }
+    /**
+     * Draw a layer on the canvas
+     */
+    @ExperimentalForeignApi
+    override fun drawLayer(layer: Layer, x: Float, y: Float, width: Float, height: Float) {
+        if (layer is ImageLayer) {
+            val image = layer.image as? UIImage ?: return
+            val rect = CGRectMake(x.toDouble(), y.toDouble(), width.toDouble(), height.toDouble())
+            context?.let {
+                // Save the current context state
+                CGContextSaveGState(it)
 
-    fun drawCircle(x: Double, y: Double, radius: Double) {
-        // TODO: Implement circle drawing using CGContext
-    }
+                // Draw the image upside down because Core Graphics has a different coordinate system origin
+                CGContextTranslateCTM(it, 0.0, height.toDouble())
+                CGContextScaleCTM(it, 1.0, -1.0)
 
-    fun drawText(text: String, x: Double, y: Double) {
-        // TODO: Implement text drawing using CGContext
-    }
+                image.drawInRect(rect)
 
-    fun drawImage(image: Any, x: Double, y: Double, width: Double, height: Double) {
-        // TODO: Implement image drawing using CGContext
-    }
-
-    fun drawLayer(layer: Layer, x: Double, y: Double, width: Double, height: Double, angleDegrees: Double, scaleX: Double, scaleY: Double) {
-        context?.let {
-            when (layer) {
-                is ImageLayer -> {
-                    val image = UIImage.imageNamed("testImage")
-                    image?.let { uiImage ->
-                        val rect = CGRect(x, y, width, height)
-
-                        // Save the current context state
-                        platform.CoreGraphics.CGContextSaveGState(it)
-
-                        // Apply transformations in reverse order: translate, rotate, scale
-                        platform.CoreGraphics.CGContextTranslateCTM(it, x + width / 2, y + height / 2)
-                        platform.CoreGraphics.CGContextRotateCTM(it, angleDegrees * kotlin.math.PI / 180)
-                        platform.CoreGraphics.CGContextScaleCTM(it, scaleX, scaleY)
-                        platform.CoreGraphics.CGContextTranslateCTM(it, -(x + width / 2), -(y + height / 2))
-
-                        // Draw the image upside down because Core Graphics has a different coordinate system origin
-                        platform.CoreGraphics.CGContextTranslateCTM(it, 0.0, height)
-                        platform.CoreGraphics.CGContextScaleCTM(it, 1.0, -1.0)
-
-                        uiImage.drawInRect(rect)
-
-                        // Restore the context state
-                        platform.CoreGraphics.CGContextRestoreGState(it)
-                    }
-                }
-                // TODO: Implement TextLayer drawing
-                else -> {}
+                // Restore the context state
+                CGContextRestoreGState(it)
             }
         }
+    }
+
+    /**
+     * Draw a layer with transformations
+     */
+    @ExperimentalForeignApi
+    override fun drawLayerWithTransform(
+        layer: Layer,
+        x: Float,
+        y: Float,
+        width: Float,
+        height: Float,
+        rotation: Float,
+        scaleX: Float,
+        scaleY: Float
+    ) {
+        if (layer is ImageLayer) {
+            val image = layer.image as? UIImage ?: return
+            val rect = CGRectMake(0.0, 0.0, width.toDouble(), height.toDouble())
+
+            context?.let {
+                // Save the current context state
+                CGContextSaveGState(it)
+
+                // Apply transformations in reverse order: translate, rotate, scale
+                CGContextTranslateCTM(it, x.toDouble(), y.toDouble())
+                CGContextTranslateCTM(it, (width / 2).toDouble(), (height / 2).toDouble())
+                CGContextRotateCTM(it, rotation * PI / 180)
+                CGContextScaleCTM(it, scaleX.toDouble(), scaleY.toDouble())
+                CGContextTranslateCTM(it, -(width / 2).toDouble(), -(height / 2).toDouble())
+
+                // Draw the image with flipped Y axis for Core Graphics coordinate system
+                CGContextTranslateCTM(it, 0.0, height.toDouble())
+                CGContextScaleCTM(it, 1.0, -1.0)
+
+                image.drawInRect(rect)
+
+                // Restore the context state
+                CGContextRestoreGState(it)
+            }
+        }
+    }
+
+    /**
+     * Clear the canvas
+     */
+    override fun clear() {
+        // In iOS, clearing is typically handled by the view's drawing cycle
+        // and doesn't need to be manually implemented here
     }
 }

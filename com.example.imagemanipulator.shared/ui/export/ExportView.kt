@@ -1,10 +1,11 @@
 package com.example.imagemanipulator.shared.ui.export
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import com.example.imagemanipulator.shared.CanvasViewModel
-
-@Composable
-fun ExportView(viewModel: CanvasViewModel) {
-    Text(text = "Export View")
+/**
+ * Base interface for export view
+ * Each platform will provide its own implementation
+ */
+interface ExportView {
+    fun show()
+    fun hide()
+    fun exportToBase64(): String
 }

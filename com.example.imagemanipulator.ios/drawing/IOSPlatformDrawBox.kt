@@ -1,10 +1,26 @@
 package com.example.imagemanipulator.ios.drawing
 
-import com.example.imagemanipulator.shared.drawing.PlatformCanvas
-import com.example.imagemanipulator.shared.drawing.PlatformDrawBox
+import kotlinx.cinterop.ExperimentalForeignApi
+import platform.CoreGraphics.CGContextRef
+import platform.UIKit.UIGraphicsGetCurrentContext
 
-actual class IOSPlatformDrawBox : PlatformDrawBox {
-    actual override fun drawOnCanvas(platformCanvas: PlatformCanvas, draw: PlatformCanvas.() -> Unit) {
-        draw(platformCanvas)
+/**
+ * iOS helper class for drawing on a Canvas
+ */
+@ExperimentalForeignApi
+class IOSPlatformDrawBox {
+    /**
+     * Draw on the canvas using the provided callback
+     */
+    @ExperimentalForeignApi
+    fun drawOnCanvas(canvas: IOSPlatformCanvas, callback: (IOSPlatformCanvas) -> Unit) {
+        // Get the current graphics context
+        val context = UIGraphicsGetCurrentContext() ?: return
+
+        // Set the context on the canvas
+        canvas.setContext(context)
+
+        // Call the drawing callback
+        callback(canvas)
     }
 }

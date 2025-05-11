@@ -73,3 +73,4 @@ firebase/
 # If you use code generation libraries, check their documentation
 # for recommended .gitignore patterns.
 **/.claude/settings.local.json
+/.claude/

@@ -1,10 +1,11 @@
 package com.example.imagemanipulator.shared.ui.canvas
 
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import com.example.imagemanipulator.shared.LayerViewModel
-
-@Composable
-fun LayerOptionsView(layerViewModel: LayerViewModel) {
-    Text("Layer Options")
+/**
+ * Base interface for layer options view
+ * Each platform will provide its own implementation
+ */
+interface LayerOptionsView {
+    fun show(layerId: String)
+    fun hide()
+    fun isVisible(): Boolean
 }

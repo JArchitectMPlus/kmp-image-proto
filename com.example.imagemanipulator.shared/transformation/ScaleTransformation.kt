@@ -2,13 +2,29 @@ package com.example.imagemanipulator.shared.transformation
 
 import com.example.imagemanipulator.shared.model.Layer
 import com.example.imagemanipulator.shared.model.ImageLayer
-import kotlin.reflect.KProperty1
+import com.example.imagemanipulator.shared.model.TextLayer
 
+/**
+ * Transformation that applies scaling to a layer
+ */
 class ScaleTransformation(val scale: Float) : TransformationManager() {
+    /**
+     * Apply scale transformation to a layer
+     */
     override fun apply(layer: Layer) {
-        if (layer is ImageLayer) {
-            (layer::class.members.first { it.name == "scale" } as KProperty1<ImageLayer, Float>).getSetter(layer).call(scale)
+        when (layer) {
+            is ImageLayer -> {
+                layer.scale = scale
+            }
+            is TextLayer -> {
+                layer.scale = scale
+            }
         }
-  }
-    override fun canApply(layer: Layer): Boolean = true
+    }
+
+    /**
+     * Scale transformation can be applied to ImageLayer and TextLayer objects
+     */
+    override fun canApply(layer: Layer): Boolean =
+        layer is ImageLayer || layer is TextLayer
 }
