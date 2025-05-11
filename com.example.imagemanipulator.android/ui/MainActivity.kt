@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
         Column(modifier = Modifier.fillMaxSize()) {
             // Top app bar
             TopAppBar(
-                title = { Text("Image Manipulator") },
+                title = { Text("DP Image Editor") },
                 actions = {
                     IconButton(onClick = { imagePickerLauncher.launch("image/*") }) {
                         Icon(Icons.Filled.Add, contentDescription = "Add Image")
@@ -110,10 +110,6 @@ class MainActivity : ComponentActivity() {
                 elevation = 4.dp
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Text("Image Manipulator", style = MaterialTheme.typography.h6)
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
                     // Scale controls
                     Row(
                         modifier = Modifier.fillMaxWidth(),
