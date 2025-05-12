@@ -83,11 +83,11 @@ class MainActivity : ComponentActivity() {
             // Top app bar
             TopAppBar(
                 title = { Text("DP Image Editor") },
-                actions = {
-                    IconButton(onClick = { imagePickerLauncher.launch("image/*") }) {
-                        Icon(Icons.Filled.Add, contentDescription = "Add Image")
-                    }
-                }
+//                actions = {
+//                    IconButton(onClick = { imagePickerLauncher.launch("image/*") }) {
+//                        Icon(Icons.Filled.Add, contentDescription = "Add Image")
+//                    }
+//                }
             )
             
             // Canvas area
