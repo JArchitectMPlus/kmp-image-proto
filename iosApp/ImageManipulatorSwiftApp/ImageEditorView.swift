@@ -2,13 +2,9 @@ import SwiftUI
 import shared
 
 struct ImageEditorView: View {
-    @StateObject private var viewModel = ImageEditorViewModel()
+    @StateObject private var canvasViewModel = CanvasViewModelWrapper()
+    @StateObject private var layerViewModel = LayerViewModelWrapper()
     @State private var showImagePicker = false
-    @State private var dragOffset = CGSize.zero
-    @State private var currentScale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 1.0
-    @State private var currentRotation: Angle = .degrees(0)
-    @State private var lastRotation: Angle = .degrees(0)
     
     var body: some View {
         VStack {
