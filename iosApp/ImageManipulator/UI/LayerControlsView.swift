@@ -10,6 +10,7 @@ struct LayerControlsView: View {
     @State private var showingImagePicker = false
     @State private var selectedUIImage: UIImage? = nil
     @State private var showingExportOptions = false
+ @State private var showingColorPicker = false
     @State private var exportedBase64: String = ""
     
     private let imageProvider = IOSImageProvider()
@@ -18,9 +19,6 @@ struct LayerControlsView: View {
         VStack(spacing: 16) {
             Text("Image Manipulator")
                 .font(.headline)
-                .padding(.top)
-            
-            // Scale controls
             if let layer = layerViewModel.selectedLayer {
                 VStack(spacing: 8) {
                     HStack {
@@ -82,7 +80,6 @@ struct LayerControlsView: View {
                         }
                     }
                     
-                    // Text-specific controls
                     if let textLayer = layer as? TextLayer {
                         VStack(spacing: 8) {
                             Divider()
@@ -98,14 +95,19 @@ struct LayerControlsView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.vertical, 4)
                             
-                            // Text color (simple implementation)
+                            // Text color picker
                             HStack {
                                 Text("Color:")
-                                TextField("Hex Color", text: Binding(
-                                    get: { textLayer.color },
-                                    set: { updateTextColor(textLayer, newColor: $0) }
+                                Spacer()
+                                ColorPicker("", selection: Binding(
+                                    get: { UIColor(hexString: textLayer.color) ?? UIColor.black },
+                                    set: { newColor in
+                                        updateTextColor(textLayer, newColor: newColor.toHexString())
+                                    }
                                 ))
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .labelsHidden() // Hide the default label
+                                .fixedSize()
+
                                 .frame(width: 100)
                             }
                         }
@@ -136,6 +138,7 @@ struct LayerControlsView: View {
                 .padding(.horizontal)
             }
             
+            // Add text layer button
             Divider()
             
             // Add text layer button
@@ -155,6 +158,7 @@ struct LayerControlsView: View {
             .padding(.horizontal)
             
             // Add image button
+
             Button(action: {
                 showingImagePicker = true
             }) {
@@ -179,6 +183,7 @@ struct LayerControlsView: View {
             }
             
             // Export button (Base64)
+
             Button(action: {
                 exportToBase64()
             }) {
@@ -202,6 +207,7 @@ struct LayerControlsView: View {
             }
             
             // Clear canvas button
+
             Button(action: {
                 clearCanvas()
             }) {
@@ -218,8 +224,6 @@ struct LayerControlsView: View {
             .padding(.horizontal)
             
             Divider()
-            
-            // Layers list
             Text("Layers (\(layerViewModel.layers.count))")
                 .font(.headline)
                 .padding(.top)
@@ -440,9 +444,15 @@ struct LayerControlsView: View {
         canvasViewModel.updateLayer(layer: textLayer)
     }
     
-    private func updateTextColor(_ textLayer: TextLayer, newColor: String) {
-        textLayer.color = newColor
-        layerViewModel.updateLayer(layer: textLayer)
+    private func updateTextColor(_ textLayer: TextLayer, newColor: String?) {
+        if let color = newColor {
+            textLayer.color = color
+            layerViewModel.updateLayer(layer: textLayer)
+            canvasViewModel.updateLayer(layer: textLayer)
+        } else {
+            // Handle invalid color string or do nothing
+        }
+
         canvasViewModel.updateLayer(layer: textLayer)
     }
     
@@ -597,4 +607,35 @@ class TransformationSystemWrapper: ObservableObject {
         transformationSystem.clearTransformations()
     }
 }
+
+// Helper extension for UIColor to hex string
+extension UIColor {
+    func toHexString() -> String {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+
+        let rgb: Int = (Int)(r * 255) << 16 | (Int)(g * 255) << 8 | (Int)(b * 255) << 0
+        return String(format: "#%06x", rgb)
+    }
+
+    convenience init?(hexString: String) {
+        var cleanHexString = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
+        cleanHexString = cleanHexString.replacingOccurrences(of: "#", with: "")
+
+        var rgbValue: UInt64 = 0
+        Scanner(string: cleanHexString).scanHexInt64(&rgbValue)
+
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
+
+        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+}
+
+
 
