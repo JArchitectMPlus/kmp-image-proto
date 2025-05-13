@@ -4,6 +4,9 @@ This project is a mobile image manipulation application using Kotlin Multiplatfo
 
 ## Architecture
 
+![Image Editor](https://github.com/user-attachments/assets/a7dd49d9-9060-49e7-a7dc-07d25141e315)
+
+
 The app follows the KMP best practices with a modular architecture:
 
 - **Shared Logic:** Image transformation logic (scaling, rotation, etc.) is implemented in Kotlin and shared between platforms
@@ -229,6 +232,3 @@ The app demonstrates a production-ready KMP architecture with platform-specific 
 - Each platform has a specific canvas implementation:
    - Android: Uses Android Canvas API
    - iOS: Uses CoreGraphics and UIKit
-
-This architecture ensures the best of both worlds - shared business logic with platform-specific UI implementations that follow each platform's design guidelines and performance characteristics.
-
