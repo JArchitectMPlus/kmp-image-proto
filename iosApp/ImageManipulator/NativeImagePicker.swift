@@ -1,14 +1,15 @@
+import shared
 import SwiftUI
 import PhotosUI
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct NativeImagePicker: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) private var presentationMode
     
     class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        var parent: ImagePicker
-        
-        init(_ parent: ImagePicker) {
+        var parent: NativeImagePicker
+
+        init(_ parent: NativeImagePicker) {
             self.parent = parent
         }
         
@@ -44,9 +45,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 // Helper for presenting the image picker
 extension View {
-    func imagePicker(selectedImage: Binding<UIImage?>, isPresented: Binding<Bool>) -> some View {
+    func nativeImagePicker(selectedImage: Binding<UIImage?>, isPresented: Binding<Bool>) -> some View {
         self.sheet(isPresented: isPresented) {
-            ImagePicker(selectedImage: selectedImage)
+            NativeImagePicker(selectedImage: selectedImage)
         }
     }
 }

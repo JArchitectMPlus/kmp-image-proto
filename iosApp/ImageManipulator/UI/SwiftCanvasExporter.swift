@@ -1,5 +1,7 @@
+import shared
 import UIKit
 import shared
+import Foundation
 
 /// Swift implementation of the canvas exporter
 class SwiftCanvasExporter {
@@ -74,7 +76,7 @@ class SwiftCanvasExporter {
         
         // Parse color
         var color = UIColor.black
-        if let layerColor = try? UIColor(hexString: layer.color) {
+        if let layerColor = UIColor(hexString: layer.color) {
             color = layerColor
         }
         
@@ -96,23 +98,3 @@ class SwiftCanvasExporter {
     }
 }
 
-// Helper extension for UIColor from hex string
-extension UIColor {
-    convenience init(hexString: String) throws {
-        var hexSanitized = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
-        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-        
-        var rgb: UInt64 = 0
-        
-        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else {
-            throw NSError(domain: "UIColor+Hex", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid hex color format"])
-        }
-        
-        self.init(
-            red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgb & 0x0000FF) / 255.0,
-            alpha: 1.0
-        )
-    }
-}

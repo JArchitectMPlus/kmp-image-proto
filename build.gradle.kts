@@ -5,6 +5,7 @@ plugins {
     id("com.android.application") version "8.1.4"
     id("org.jetbrains.compose") version "1.5.3"
     id("maven-publish")
+    id("org.jetbrains.kotlin.native.cocoapods") version "1.9.20"
 }
 
 // Apply iOS deployment tasks
@@ -38,6 +39,18 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
         }
+    }
+
+    cocoapods {
+        summary = "KMP Image Manipulator Shared Module"
+        homepage = "https://github.com/yourproject/kmp-image-proto"
+        version = "1.0"
+        ios.deploymentTarget = "14.0"
+        framework {
+            baseName = "shared"
+            isStatic = false
+        }
+        podfile = project.file("iosApp/Podfile")
     }
 
     sourceSets {

@@ -1,10 +1,17 @@
 import SwiftUI
 import shared
+import PhotosUI
 
 struct ImageEditorView: View {
     @StateObject private var canvasViewModel = CanvasViewModelWrapper()
     @StateObject private var layerViewModel = LayerViewModelWrapper()
+    @StateObject private var viewModel = ImageViewModelWrapper()
     @State private var showImagePicker = false
+    @State private var currentScale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    @State private var currentRotation: Angle = .degrees(0)
+    @State private var lastRotation: Angle = .degrees(0)
+    @State private var dragOffset: CGSize = .zero
     
     var body: some View {
         VStack {
@@ -154,7 +161,7 @@ struct ImageEditorView: View {
             .padding(.bottom)
         }
         .sheet(isPresented: $showImagePicker) {
-            ImagePicker(selectedImage: $viewModel.selectedImage)
+            NativeImagePicker(selectedImage: $viewModel.selectedImage)
         }
     }
     

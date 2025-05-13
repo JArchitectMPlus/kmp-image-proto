@@ -8,95 +8,86 @@
 
 /* Begin PBXBuildFile section */
 		02F366B9761CD4302CCA70AB /* ImageViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57391FDE1C64C60FF71FAA80 /* ImageViewModelWrapper.swift */; };
-		0651582429B28000E6A55CDA /* SimpleLayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8D59B2888359658A4E80A /* SimpleLayerControlsView.swift */; };
 		0A1D981F79C6E54FD4DB2B95 /* ImageEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14673B25F51EE225E149AA2 /* ImageEditorView.swift */; };
 		1359FC73792324C7CF7A0414 /* PlatformImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECFE7A5EC9DD729D9E78324 /* PlatformImageProvider.swift */; };
-		26B3AC5EAF0E484E307E23AD /* Pods_ImageManipulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7067144D7B3106E710E30411 /* Pods_ImageManipulator.framework */; };
-		34D5751D160B57C2BD4C8040 /* SharedModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB866A3493B13825F6F1B81 /* SharedModule.swift */; };
-		34E86D164C8E2F8693F55E73 /* MainEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C3EB376BDD6CC3C2CE0D4 /* MainEditorView.swift */; };
 		39FC3B2A6AC65DDD042838E6 /* LayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63F05DF0A3F15E63B87BFDB /* LayerControlsView.swift */; };
 		5293F5E9DC499635AE13A119 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70ED71F984388F10B3A4EC /* SceneDelegate.swift */; };
 		572326DF875BCE13C9B35AF8 /* SwiftCanvasExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BF9EED4B1EB2F335CD35E /* SwiftCanvasExporter.swift */; };
 		5D23876FA591606D8948878C /* IOSImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1D01AD6395E4D7AC13441D /* IOSImageProvider.swift */; };
-		5ED741A92DD40DD7002C2F25 /* UIExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED741A82DD40DD7002C2F25 /* UIExtensionHelpers.swift */; };
-		6931B1B3CC10DFC9E19F069F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84C3B5F84AB64E28C85C53 /* UIColorExtensions.swift */; };
 		794CD725BA1DE9E7A54B950F /* ImageManipulatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFCFD8A2AB443CF649A944 /* ImageManipulatorApp.swift */; };
 		7BC2DF366F79D8949F991CEE /* LayerViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D0224A1CFB39721F56994B /* LayerViewModelWrapper.swift */; };
 		82E21779FFB2262659976F83 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EA8D9E4786094E078BB79 /* CanvasView.swift */; };
 		8855C29BE21D02B763A7F75B /* CanvasViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC8D50E00A4377B91E66A5C /* CanvasViewModelWrapper.swift */; };
 		8B56B10C965B4019ACFDE260 /* ImageEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350F14AB78E74E642DC33D8C /* ImageEditorViewModel.swift */; };
 		951D51AEA1A309F572011A5E /* NativeImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4465B4F3410AF1D33911FB40 /* NativeImagePicker.swift */; };
+		9661CB66434DB6D92481D596 /* shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A4BBB0882AF91C7D9360E2 /* shared.framework */; };
+		97F350CAC5270DB6B05AD6CE /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBC0051374A80735C5EF18 /* FloatExtensions.swift */; };
+		98F431D55467BD78C65BDC04 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E2F41A5A9BD08196D09486 /* UIColorExtensions.swift */; };
 		9D6E18C85D3C8630371E899F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208EEFF0E4592314C6DEDFE8 /* ImagePicker.swift */; };
 		A220FD2FD00DFB3394A72F0F /* KotlinInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF39D87B0ECC73F8CA6FCA7 /* KotlinInterop.swift */; };
+		B8C656DD88FC57F885834C98 /* Pods_ImageManipulator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08C64D5CB238439AFAB4B5F3 /* Pods_ImageManipulator.framework */; };
 		CAD5C19143B9710D57FD520F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8259530E474F103904647604 /* LaunchScreen.storyboard */; };
-		CC68A94EF73700FE9913CA7D /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A98D853E96813BDF8CEB05 /* FloatExtensions.swift */; };
-		E123F417BA4CAA82F4B4AB96 /* TransformationSystemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319B87C7083349AE1E04B36E /* TransformationSystemWrapper.swift */; };
 		F626477A2CC8D4AC7D1095A6 /* SharedFlowCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A53455106D4281F5F6D829 /* SharedFlowCollector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		05A53455106D4281F5F6D829 /* SharedFlowCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFlowCollector.swift; sourceTree = "<group>"; };
+		08C64D5CB238439AFAB4B5F3 /* Pods_ImageManipulator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageManipulator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECFE7A5EC9DD729D9E78324 /* PlatformImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformImageProvider.swift; sourceTree = "<group>"; };
 		204EA8D9E4786094E078BB79 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		208EEFF0E4592314C6DEDFE8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		22DFCFD8A2AB443CF649A944 /* ImageManipulatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManipulatorApp.swift; sourceTree = "<group>"; };
 		27D0224A1CFB39721F56994B /* LayerViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerViewModelWrapper.swift; sourceTree = "<group>"; };
 		2DF39D87B0ECC73F8CA6FCA7 /* KotlinInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotlinInterop.swift; sourceTree = "<group>"; };
-		319B87C7083349AE1E04B36E /* TransformationSystemWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationSystemWrapper.swift; sourceTree = "<group>"; };
+		33A4BBB0882AF91C7D9360E2 /* shared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = shared.framework; path = ../build/cocoapods/framework/shared.framework; sourceTree = "<group>"; };
 		350F14AB78E74E642DC33D8C /* ImageEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditorViewModel.swift; sourceTree = "<group>"; };
 		4465B4F3410AF1D33911FB40 /* NativeImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeImagePicker.swift; sourceTree = "<group>"; };
+		47E2F41A5A9BD08196D09486 /* UIColorExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = ImageManipulator/Extensions/UIColorExtensions.swift; sourceTree = "<group>"; };
 		57391FDE1C64C60FF71FAA80 /* ImageViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModelWrapper.swift; sourceTree = "<group>"; };
-		5ED741A82DD40DD7002C2F25 /* UIExtensionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensionHelpers.swift; sourceTree = "<group>"; };
 		5F39F572C5F7F9039FAD05E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6C3BF9EED4B1EB2F335CD35E /* SwiftCanvasExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCanvasExporter.swift; sourceTree = "<group>"; };
-		7067144D7B3106E710E30411 /* Pods_ImageManipulator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ImageManipulator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		727350BBE080C7ADAF03B7E5 /* Pods-ImageManipulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageManipulator.debug.xcconfig"; path = "Target Support Files/Pods-ImageManipulator/Pods-ImageManipulator.debug.xcconfig"; sourceTree = "<group>"; };
+		6EC8B073A5A7B918EE96BF76 /* Pods-ImageManipulator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageManipulator.debug.xcconfig"; path = "Target Support Files/Pods-ImageManipulator/Pods-ImageManipulator.debug.xcconfig"; sourceTree = "<group>"; };
+		79CBC0051374A80735C5EF18 /* FloatExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatExtensions.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
 		7E70ED71F984388F10B3A4EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7EB866A3493B13825F6F1B81 /* SharedModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModule.swift; sourceTree = "<group>"; };
 		8259530E474F103904647604 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8C84C3B5F84AB64E28C85C53 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		9E6D6B5978D0E50E7C687A77 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		AA1D01AD6395E4D7AC13441D /* IOSImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSImageProvider.swift; sourceTree = "<group>"; };
-		B60CC8A27489D74759E51067 /* Pods-ImageManipulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageManipulator.release.xcconfig"; path = "Target Support Files/Pods-ImageManipulator/Pods-ImageManipulator.release.xcconfig"; sourceTree = "<group>"; };
 		B63F05DF0A3F15E63B87BFDB /* LayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerControlsView.swift; sourceTree = "<group>"; };
-		C59C3EB376BDD6CC3C2CE0D4 /* MainEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEditorView.swift; sourceTree = "<group>"; };
 		CCC8D50E00A4377B91E66A5C /* CanvasViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModelWrapper.swift; sourceTree = "<group>"; };
 		D14673B25F51EE225E149AA2 /* ImageEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditorView.swift; sourceTree = "<group>"; };
 		D1E501FB59332C3C6E3AC395 /* ImageManipulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageManipulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2A98D853E96813BDF8CEB05 /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
-		FAB8D59B2888359658A4E80A /* SimpleLayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLayerControlsView.swift; sourceTree = "<group>"; };
+		D692F1907A8EF414A064AF9E /* Pods-ImageManipulator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageManipulator.release.xcconfig"; path = "Target Support Files/Pods-ImageManipulator/Pods-ImageManipulator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C3341626C06F922EB5CCA579 /* Frameworks */ = {
+		0AE738FC150CBEBA3A62D169 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26B3AC5EAF0E484E307E23AD /* Pods_ImageManipulator.framework in Frameworks */,
+				9661CB66434DB6D92481D596 /* shared.framework in Frameworks */,
+				B8C656DD88FC57F885834C98 /* Pods_ImageManipulator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1817453FB957BADD01B8BC0E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				47E2F41A5A9BD08196D09486 /* UIColorExtensions.swift */,
+				79CBC0051374A80735C5EF18 /* FloatExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";};
 		25CD77CAEF943A9B6168AC14 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				204EA8D9E4786094E078BB79 /* CanvasView.swift */,
 				B63F05DF0A3F15E63B87BFDB /* LayerControlsView.swift */,
-				FAB8D59B2888359658A4E80A /* SimpleLayerControlsView.swift */,
 				6C3BF9EED4B1EB2F335CD35E /* SwiftCanvasExporter.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		48DD901AD32CDD5A5DB03358 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				5ED741A82DD40DD7002C2F25 /* UIExtensionHelpers.swift */,
-				D2A98D853E96813BDF8CEB05 /* FloatExtensions.swift */,
-				8C84C3B5F84AB64E28C85C53 /* UIColorExtensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		60594E12A0C976A454E9B74B /* ImageManipulatorSwiftApp */ = {
@@ -106,27 +97,27 @@
 				350F14AB78E74E642DC33D8C /* ImageEditorViewModel.swift */,
 				22DFCFD8A2AB443CF649A944 /* ImageManipulatorApp.swift */,
 				208EEFF0E4592314C6DEDFE8 /* ImagePicker.swift */,
-				C59C3EB376BDD6CC3C2CE0D4 /* MainEditorView.swift */,
 				7E70ED71F984388F10B3A4EC /* SceneDelegate.swift */,
 			);
 			path = ImageManipulatorSwiftApp;
 			sourceTree = "<group>";
 		};
-		8993827B60A9BAC14C3EFD2B /* Frameworks */ = {
+		648638FC576DA879920BC941 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7067144D7B3106E710E30411 /* Pods_ImageManipulator.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9583FDB4FFD2A21D25AA76B8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				727350BBE080C7ADAF03B7E5 /* Pods-ImageManipulator.debug.xcconfig */,
-				B60CC8A27489D74759E51067 /* Pods-ImageManipulator.release.xcconfig */,
+				6EC8B073A5A7B918EE96BF76 /* Pods-ImageManipulator.debug.xcconfig */,
+				D692F1907A8EF414A064AF9E /* Pods-ImageManipulator.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B42161006181BD7DF6C60B6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33A4BBB0882AF91C7D9360E2 /* shared.framework */,
+				08C64D5CB238439AFAB4B5F3 /* Pods_ImageManipulator.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C57D19352CF756CA3A60FDD3 = {
@@ -136,9 +127,9 @@
 				8259530E474F103904647604 /* LaunchScreen.storyboard */,
 				F3436B149DF8997B9C9FC5B9 /* ImageManipulator */,
 				60594E12A0C976A454E9B74B /* ImageManipulatorSwiftApp */,
+				B42161006181BD7DF6C60B6C /* Frameworks */,
 				E5F8F36BCDDD7137E4E0F0E3 /* Products */,
-				9583FDB4FFD2A21D25AA76B8 /* Pods */,
-				8993827B60A9BAC14C3EFD2B /* Frameworks */,
+				648638FC576DA879920BC941 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				CCC8D50E00A4377B91E66A5C /* CanvasViewModelWrapper.swift */,
+				9E6D6B5978D0E50E7C687A77 /* ColorExtensions.swift */,
 				57391FDE1C64C60FF71FAA80 /* ImageViewModelWrapper.swift */,
 				AA1D01AD6395E4D7AC13441D /* IOSImageProvider.swift */,
 				2DF39D87B0ECC73F8CA6FCA7 /* KotlinInterop.swift */,
@@ -161,10 +153,8 @@
 				4465B4F3410AF1D33911FB40 /* NativeImagePicker.swift */,
 				1ECFE7A5EC9DD729D9E78324 /* PlatformImageProvider.swift */,
 				05A53455106D4281F5F6D829 /* SharedFlowCollector.swift */,
-				7EB866A3493B13825F6F1B81 /* SharedModule.swift */,
-				319B87C7083349AE1E04B36E /* TransformationSystemWrapper.swift */,
-				48DD901AD32CDD5A5DB03358 /* Extensions */,
 				25CD77CAEF943A9B6168AC14 /* UI */,
+				1817453FB957BADD01B8BC0E /* Extensions */,
 			);
 			path = ImageManipulator;
 			sourceTree = "<group>";
@@ -176,11 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7D8F5D46014EABD6BBD11E1 /* Build configuration list for PBXNativeTarget "ImageManipulator" */;
 			buildPhases = (
-				00EB8F9036679E51D15CD987 /* [CP] Check Pods Manifest.lock */,
+				45E39F540328564596F5D888 /* [CP] Check Pods Manifest.lock */,
 				7741EE754F963ED6CAB3663E /* Sources */,
 				CEF9DCD95079BF23E3A5A82E /* Resources */,
-				C3341626C06F922EB5CCA579 /* Frameworks */,
-				2DC7507DE3D702D5191AD5F9 /* [CP] Embed Pods Frameworks */,
+				0AE738FC150CBEBA3A62D169 /* Frameworks */,
+				F1D114ABC2960AB9D6E7FDF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,7 +226,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00EB8F9036679E51D15CD987 /* [CP] Check Pods Manifest.lock */ = {
+		45E39F540328564596F5D888 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -258,7 +248,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2DC7507DE3D702D5191AD5F9 /* [CP] Embed Pods Frameworks */ = {
+		F1D114ABC2960AB9D6E7FDF6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -284,7 +274,6 @@
 			files = (
 				82E21779FFB2262659976F83 /* CanvasView.swift in Sources */,
 				8855C29BE21D02B763A7F75B /* CanvasViewModelWrapper.swift in Sources */,
-				CC68A94EF73700FE9913CA7D /* FloatExtensions.swift in Sources */,
 				5D23876FA591606D8948878C /* IOSImageProvider.swift in Sources */,
 				0A1D981F79C6E54FD4DB2B95 /* ImageEditorView.swift in Sources */,
 				8B56B10C965B4019ACFDE260 /* ImageEditorViewModel.swift in Sources */,
@@ -294,17 +283,13 @@
 				A220FD2FD00DFB3394A72F0F /* KotlinInterop.swift in Sources */,
 				39FC3B2A6AC65DDD042838E6 /* LayerControlsView.swift in Sources */,
 				7BC2DF366F79D8949F991CEE /* LayerViewModelWrapper.swift in Sources */,
-				34E86D164C8E2F8693F55E73 /* MainEditorView.swift in Sources */,
 				951D51AEA1A309F572011A5E /* NativeImagePicker.swift in Sources */,
 				1359FC73792324C7CF7A0414 /* PlatformImageProvider.swift in Sources */,
 				5293F5E9DC499635AE13A119 /* SceneDelegate.swift in Sources */,
-				5ED741A92DD40DD7002C2F25 /* UIExtensionHelpers.swift in Sources */,
 				F626477A2CC8D4AC7D1095A6 /* SharedFlowCollector.swift in Sources */,
-				34D5751D160B57C2BD4C8040 /* SharedModule.swift in Sources */,
-				0651582429B28000E6A55CDA /* SimpleLayerControlsView.swift in Sources */,
 				572326DF875BCE13C9B35AF8 /* SwiftCanvasExporter.swift in Sources */,
-				E123F417BA4CAA82F4B4AB96 /* TransformationSystemWrapper.swift in Sources */,
-				6931B1B3CC10DFC9E19F069F /* UIColorExtensions.swift in Sources */,
+				98F431D55467BD78C65BDC04 /* UIColorExtensions.swift in Sources */,
+				97F350CAC5270DB6B05AD6CE /* FloatExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,14 +298,16 @@
 /* Begin XCBuildConfiguration section */
 		13B39DAF749B355F79DD1F4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B60CC8A27489D74759E51067 /* Pods-ImageManipulator.release.xcconfig */;
+			baseConfigurationReference = D692F1907A8EF414A064AF9E /* Pods-ImageManipulator.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -455,14 +442,16 @@
 		};
 		E969176AF2CDC378D7FC9EF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 727350BBE080C7ADAF03B7E5 /* Pods-ImageManipulator.debug.xcconfig */;
+			baseConfigurationReference = 6EC8B073A5A7B918EE96BF76 /* Pods-ImageManipulator.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (

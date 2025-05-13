@@ -11,6 +11,7 @@ targets:
     deploymentTarget: 14.0
     sources:
       - ImageManipulatorSwiftApp
+      - ImageManipulator
       - Info.plist
       - LaunchScreen.storyboard
     info:
@@ -23,11 +24,11 @@ targets:
         NSPhotoLibraryUsageDescription: "This app needs access to your photo library to let you select images to manipulate."
     settings:
       base:
-        FRAMEWORK_SEARCH_PATHS: "$(SRCROOT)/../build/cocoapods/framework"
-        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: YES
         DEVELOPMENT_TEAM: "" # Set your development team ID here if you have one
         EXCLUDED_ARCHS[sdk=iphonesimulator*]: ""
         VALID_ARCHS: "arm64 x86_64"
-    dependencies:
-      - framework: ../build/cocoapods/framework/shared.framework
-        embed: true
+        # Use CocoaPods inherited settings
+        FRAMEWORK_SEARCH_PATHS: "$(inherited)"
+        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: "$(inherited)"
+    # We're now using CocoaPods to manage the shared framework,
+    # so we don't need to explicitly list it as a dependency here

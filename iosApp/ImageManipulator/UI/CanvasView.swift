@@ -47,11 +47,8 @@ struct CanvasView: UIViewRepresentable {
                 imageLayer.x = toX
                 imageLayer.y = toY
                 
-                // Apply the transformation and update both view models
-                if let transformationSystem = imageLayer.transformationSystem {
-                    transformationSystem.addTransformation(transformation: positionTransformation)
-                    imageLayer.applyTransformations()
-                }
+                // Apply transformations directly
+                imageLayer.applyTransformations()
                 
                 parent.layerViewModel.updateLayer(layer: imageLayer)
                 parent.canvasViewModel.updateLayer(layer: imageLayer)
@@ -59,11 +56,8 @@ struct CanvasView: UIViewRepresentable {
                 textLayer.x = toX
                 textLayer.y = toY
                 
-                // Apply the transformation and update both view models
-                if let transformationSystem = textLayer.transformationSystem {
-                    transformationSystem.addTransformation(transformation: positionTransformation)
-                    textLayer.applyTransformations()
-                }
+                // Apply transformations directly
+                textLayer.applyTransformations()
                 
                 parent.layerViewModel.updateLayer(layer: textLayer)
                 parent.canvasViewModel.updateLayer(layer: textLayer)
@@ -265,7 +259,7 @@ class CanvasUIView: UIView {
         // Draw each layer
         for layer in canvasViewModel.layers {
             if !layer.isVisible() { continue }
-            
+
             if let imageLayer = layer as? ImageLayer {
                 drawImageLayer(imageLayer, in: context)
             } else if let textLayer = layer as? TextLayer {
@@ -319,7 +313,7 @@ class CanvasUIView: UIView {
         
         // Parse color
         var color = UIColor.black
-        if let layerColor = try? UIColor(hexString: layer.color) {
+        if let layerColor = UIColor.fromHexString(layer.color) {
             color = layerColor
         }
         
@@ -353,22 +347,22 @@ class CanvasUIView: UIView {
     }
 }
 
-// Helper extension for UIColor from hex string
-extension UIColor {
-    convenience init(hexString: String) throws {
-        var hexSanitized = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
-        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
-        
-        var rgb: UInt64 = 0
+// Helper extension UIColor method for hex string in Canvas View
+private extension UIColor {
+    // We're using a new method name to avoid conflict with the one in LayerControlsView
+    static func fromHexString(_ hexString: String) -> UIColor? {
+        var cleanHexString = hexString.trimmingCharacters(in: .whitespacesAndNewlines)
+        cleanHexString = cleanHexString.replacingOccurrences(of: "#", with: "")
 
-        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else {
-            throw NSError(domain: "UIColor+Hex", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid hex color format"])
+        var rgbValue: UInt64 = 0
+        guard Scanner(string: cleanHexString).scanHexInt64(&rgbValue) else {
+            return nil
         }
-        
-        self.init(
-            red: CGFloat((rgb & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgb & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgb & 0x0000FF) / 255.0,
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: 1.0
         )
     }

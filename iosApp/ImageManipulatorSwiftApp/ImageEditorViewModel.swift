@@ -3,15 +3,28 @@ import shared
 
 class ImageEditorViewModel: ObservableObject {
     @Published var selectedImage: UIImage?
-    
+
     // Shared Kotlin ViewModel for transformation calculations
-    private let sharedViewModel = IOSImageViewModel()
+    private let sharedViewModel = ImageViewModel()
     
     // MARK: - Image Loading
     
     func loadImage(_ image: UIImage) {
         selectedImage = image
-        sharedViewModel.setImage(newImage: image)
+        // Create and add an image layer using the selected image
+        let layerId = UUID().uuidString
+        let layer = ImageLayer(
+            path: "memory://\(layerId)",
+            id: layerId,
+            image: image,
+            scale: 1.0,
+            x: 100,
+            y: 100,
+            rotation: 0,
+            isVisible: true,
+            transformationSystem: nil
+        )
+        sharedViewModel.addLayer(layer: layer)
     }
     
     // MARK: - Transformations

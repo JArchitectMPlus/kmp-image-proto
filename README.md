@@ -139,6 +139,57 @@ Alternatively, you can run individual scripts for specific steps:
 ./run-ios-simulator.sh "iPhone 16 Pro"
 ```
 
+### Building the iOS App from Scratch
+
+If you're having issues with building the iOS app (especially "No such module 'shared'" errors), follow these definitive steps to rebuild from scratch:
+
+```bash
+cd iosApp
+./rebuild_kotlin_framework.sh
+open ImageManipulator.xcworkspace
+```
+
+The rebuild process follows these key steps:
+
+1. **Clean Existing Frameworks**: Removes all previously built framework files
+   - Cleans build/cocoapods/framework directory
+   - Cleans architecture-specific framework directories
+
+2. **Build Kotlin Framework**: Builds the shared Kotlin framework for different architectures
+   - Builds for iOS Simulator ARM64 architecture
+   - Builds for iOS Simulator x86_64 architecture
+   - Creates a universal binary using lipo
+
+3. **Set Up CocoaPods Integration**: Prepares the framework for CocoaPods
+   - Copies the universal framework to the CocoaPods location
+   - Installs pods to integrate the framework with the iOS app
+
+4. **Build in Xcode**: After opening the workspace in Xcode
+   - Select a simulator (like iPhone SE)
+   - Build the project (Cmd+B)
+   - Run the app (Cmd+R)
+
+### Troubleshooting Framework Integration Issues
+
+If you still encounter "No such module 'shared'" errors after rebuild:
+
+1. **Check Framework Path**: Verify the framework exists at the expected location
+   ```bash
+   ls -la ../build/cocoapods/framework/shared.framework
+   ```
+
+2. **Verify CocoaPods Setup**: Check that pods are properly installed
+   ```bash
+   pod install
+   ```
+
+3. **Clean Xcode Caches**: In Xcode, select Product > Clean Build Folder (Shift+Cmd+K)
+
+4. **Check Import Statements**: Ensure Swift files are correctly importing the shared module
+   ```swift
+   import shared
+   ```
+
 ### Running on Android
 
 To install and run the application on an Android device or emulator:
